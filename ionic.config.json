@@ -1,0 +1,7 @@
+{
+  "name": "jasatukang",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
