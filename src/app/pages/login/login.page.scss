@@ -1,0 +1,25 @@
+.bg-image {
+	background-image: url(../../../assets/images/auth/christopher-burns-368617-unsplash.jpg);
+}
+
+.overlay {
+	&.has-blur {
+		background-image: url(../../../assets/images/auth/christopher-burns-368617-unsplash.jpg);
+	}
+}
+
+.flex-container {
+	height: 100%;
+}
+
+.login-button {
+	margin-top: 20px;
+}
+
+ion-content .register-button {
+	margin-top: 15px;
+}
+
+.facebook-login-button {
+	--background: #4267b2;
+}

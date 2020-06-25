@@ -1,0 +1,103 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary" class="main-toolbar">
+		<ion-buttons slot="start">
+			<ion-button slot="icon-only">
+				<img alt="" src="assets/images/icon-tukang.png" class="topbar-logo" />
+			</ion-button>
+		</ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<div class="segment-wrapper">
+		<ion-segment [(ngModel)]="orderSegment">
+			<ion-segment-button value="1">
+				<ion-label>Aktif</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="2">
+				<ion-label>Selesai</ion-label>
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+
+	<div [ngSwitch]="orderSegment" class="order-segment-content">
+		<div *ngSwitchCase="2">
+			<ion-list class="order-list" lines="none">
+				<ion-list-header>
+					Pesanan Selesai
+				</ion-list-header>
+				<ion-item
+					*ngFor="let order of finishedOrders"
+					routerLink="/orders/{{ order.id }}"
+					routerDirection="forward"
+					lines="none"
+					text-wrap
+				>
+					<ion-label>
+						<h3>
+							{{ order.service === 1 ? "Order" : "Survey" }} layanan {{
+							order.product_name }}
+						</h3>
+						<p class="label">
+							Hari pengerjaan:
+						</p>
+						<ion-datetime
+							class="value"
+							displayFormat="DDDD, DD MMMM YYYY"
+							[value]="order.execution_day"
+							day-names="Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu"
+							month-names="Januari, Februari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember"
+							readonly
+						>
+						</ion-datetime>
+						<p class="label has-border">Status:</p>
+						<p class="value">{{ order.status_name }}</p>
+					</ion-label>
+				</ion-item>
+			</ion-list>
+		</div>
+
+		<div *ngSwitchCase="1">
+			<ion-list class="order-list">
+				<ion-list-header>
+					Pesanan Aktif
+				</ion-list-header>
+				<ion-item
+					*ngFor="let order of activeOrders"
+					routerLink="/orders/{{ order.id }}"
+					routerDirection="forward"
+					text-wrap
+				>
+					<ion-label text-wrap>
+						<h3>
+							{{ order.service === 1 ? "Order" : "Survey" }} layanan {{
+							order.product_name }}
+						</h3>
+						<p class="label">
+							Hari pengerjaan:
+						</p>
+						<ion-datetime
+							class="value"
+							displayFormat="DDDD, DD MMMM YYYY"
+							[value]="order.execution_day"
+							day-names="Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu"
+							month-names="Januari, Februari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember"
+							readonly
+						>
+						</ion-datetime>
+						<p class="label has-border">Status:</p>
+						<p class="value">{{ order.status_name }}</p>
+					</ion-label>
+				</ion-item>
+			</ion-list>
+		</div>
+	</div>
+</ion-content>

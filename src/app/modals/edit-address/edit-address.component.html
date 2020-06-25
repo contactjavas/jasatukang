@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-button (click)="cancel()">
+				Cancel
+			</ion-button>
+		</ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-button (click)="save()" color="secondary">
+				Save
+			</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<form>
+		<ion-item>
+			<ion-label position="stacked">Ubah alamat</ion-label>
+			<ion-textarea
+				rows="4"
+				placeholder="Masukkan alamat lengkap..."
+				name="address"
+				[(ngModel)]="address"
+			>
+			</ion-textarea>
+		</ion-item>
+	</form>
+</ion-content>

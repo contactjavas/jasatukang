@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref=""></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ product.name }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div
+		class="header-banner"
+		style="background-image: url(assets/images/slide-1.jpg);"
+	></div>
+
+	<div class="segment-wrapper">
+		<ion-segment
+			[(ngModel)]="currentSegment"
+			class="service-model"
+			value="{{ currentSegment }}"
+		>
+			<ion-segment-button
+				*ngFor="let service of product.services"
+				value="{{ service.id }}"
+			>
+				{{ service.name }}
+			</ion-segment-button>
+		</ion-segment>
+	</div>
+
+	<div [ngSwitch]="currentSegment" class="service-content ion-padding">
+		<div *ngFor="let service of product.services">
+			<div
+				class="content"
+				*ngSwitchCase="service.id"
+				[innerHTML]="service.content"
+			></div>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer class="footer-cta" [ngSwitch]="currentSegment" mode="ios">
+	<ion-toolbar *ngFor="let service of product.services" class="ion-no-padding">
+		<ion-button
+			expand="full"
+			color="secondary"
+			*ngSwitchCase="service.id"
+			routerLink="/order/{{ product.id }}/1"
+			routerDirection="forward"
+			no-margin
+		>
+			{{ service.action }}
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

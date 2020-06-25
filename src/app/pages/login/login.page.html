@@ -1,0 +1,88 @@
+<ion-content class="auth-ui ion-padding">
+	<div class="bg-image"></div>
+	<div class="overlay has-gradient"></div>
+
+	<div class="flex-container">
+		<div>
+			<img
+				class="logo"
+				alt="Jasa Tukang"
+				src="assets/images/altmetric-logo.png"
+			/>
+
+			<form [formGroup]="loginForm" (submit)="login()" class="ion-padding">
+				<ion-item>
+					<ion-icon name="person" color="tertiary" slot="start"></ion-icon>
+					<ion-label position="stacked">Email</ion-label>
+					<ion-input
+						formControlName="email"
+						type="email"
+						placeholder="Masukkan alamat email"
+						autocomplete="off"
+					>
+					</ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-icon name="lock-closed" color="tertiary" slot="start"></ion-icon>
+					<ion-label position="stacked">Password</ion-label>
+					<ion-input
+						formControlName="password"
+						type="password"
+						placeholder="Masukkan password"
+						autocomplete="off"
+					>
+					</ion-input>
+				</ion-item>
+
+				<ion-button
+					type="submit"
+					expand="block"
+					fill="solid"
+					color="secondary"
+					shape="round"
+					class="login-button"
+				>
+					Masuk
+				</ion-button>
+			</form>
+
+			<div class="login-with" text-center>
+				<ion-text color="light">
+					<p>Or login with</p>
+				</ion-text>
+				<ion-button
+					fill="solid"
+					color="danger"
+					shape="round"
+					(click)="loginWithGoogle()"
+					text-capitalize
+				>
+					<ion-icon slot="start" name="logo-google"></ion-icon>
+					Google
+				</ion-button>
+				<ion-button
+					class="facebook-login-button"
+					fill="solid"
+					shape="round"
+					(click)="loginWithFacebook()"
+					text-capitalize
+				>
+					<ion-icon slot="start" name="logo-facebook"></ion-icon>
+					Facebook
+				</ion-button>
+			</div>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar color="dark">
+		<ion-title color="light">
+			Belum punya akun?
+			<a color="secondary" routerLink="/register" routerDirection="forward"
+				>Daftar Sekarang</a
+			>
+		</ion-title>
+	</ion-toolbar>
+</ion-footer>

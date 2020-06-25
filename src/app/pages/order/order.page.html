@@ -1,0 +1,117 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/app/tabs/orders"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			{{ order.service === 1 ? "Order" : "Survey" }} {{ order.service_name }} {{
+			order.product_name }}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list lines="inset">
+		<ion-list-header>
+			<label>Data Order</label>
+		</ion-list-header>
+		<ion-item>
+			<ion-label>
+				<ion-text>
+					<h3>Status pemesanan</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>
+						{{ order.status_name }}
+					</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				<ion-text>
+					<h3>Jenis order</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>
+						{{ order.service === 1 ? "Order" : "Survey" }} {{ order.service_name
+						}}
+					</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				<ion-text>
+					<h3>Layanan produk</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>
+						{{ order.product_name }}
+					</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-label>
+				<ion-text>
+					<h3>Hari pengerjaan</h3>
+				</ion-text>
+				<ion-datetime
+					class="value"
+					displayFormat="DDDD, DD MMMM YYYY pukul HH:mm"
+					value="{{ order.execution_day }}T{{ order.execution_time }}"
+					day-names="Minggu, Senin, Selasa, Rabu, Kamis, Jumat, Sabtu"
+					month-names="Januari, Februari, Maret, April, Mei, Juni, Juli, Agustus, September, Oktober, November, Desember"
+					readonly
+				>
+				</ion-datetime>
+			</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-label text-wrap>
+				<ion-text>
+					<h3>Uraian pengerjaan</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ order.note }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-label text-wrap>
+				<ion-text>
+					<h3>Alamat lengkap tujuan</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ order.address }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item>
+			<ion-label text-wrap>
+				<ion-text>
+					<h3>Detail lokasi</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ order.location_detail }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item
+			(click)="launchMap()"
+			href="https://www.google.com/maps/search/?api=1&query={{
+        order.map_lat
+      }},{{ order.map_lng }}"
+		>
+			<ion-label text-wrap>
+				<ion-text>
+					<h3>Lokasi di map</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ order.map_location }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+</ion-content>

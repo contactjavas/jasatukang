@@ -1,0 +1,30 @@
+.bg-image {
+  background-image: url(../../../assets/images/auth/rhondak-native-florida-folk-artist-83553-unsplash.jpg);
+}
+
+.overlay {
+  &.has-blur {
+    background-image: url(../../../assets/images/auth/rose-elena-502559-unsplash.jpg);
+  }
+}
+
+.form-container {
+  padding-top: 30px;
+}
+
+.logo {
+  margin-bottom: 15%;
+}
+
+ion-text {
+  margin-top: 15px;
+  color: var(--ion-color-light);
+
+  a {
+    color: var(--ion-color-medium);
+  }
+}
+
+.register-button {
+  margin-top: 20px;
+}

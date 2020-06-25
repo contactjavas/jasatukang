@@ -1,0 +1,24 @@
+// --------------------
+// Banner
+// --------------------
+.header-banner {
+	height: 180px;
+	background-size: cover;
+
+	@media screen and (min-width: 768px) {
+		height: 300px;
+	}
+}
+
+// --------------------
+// Content
+// --------------------
+.content {
+	blockquote {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 16px;
+		background-color: var(--app-color-light-grey);
+		border-radius: 6px;
+	}
+}

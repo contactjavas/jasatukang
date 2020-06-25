@@ -1,0 +1,92 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref=""></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{ pageTitle }}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<form [formGroup]="orderForm" (submit)="order()">
+		<ion-list lines="full">
+			<ion-item>
+				<ion-icon name="map" color="medium" slot="start"></ion-icon>
+				<ion-label position="stacked">Alamat Lengkap</ion-label>
+				<ion-textarea
+					formControlName="address"
+					rows="3"
+					placeholder="Masukkan alamat lengkap..."
+				></ion-textarea>
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="map" color="medium" slot="start"></ion-icon>
+				<ion-label position="stacked">Detail lokasi</ion-label>
+				<ion-textarea
+					formControlName="location_detail"
+					rows="3"
+					placeholder="Dekat bangunan apa? Sebelah mana?"
+				>
+				</ion-textarea>
+			</ion-item>
+
+			<ion-item (click)="presentLocationPicker()">
+				<ion-icon name="map" color="medium" slot="start"></ion-icon>
+				<ion-label position="stacked">
+					Lokasi di google map
+				</ion-label>
+				<ion-textarea
+					formControlName="map_location"
+					rows="3"
+					placeholder="Untuk memudahkan pencarian alamat."
+					readonly
+				>
+				</ion-textarea>
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="calendar" color="medium" slot="start"></ion-icon>
+				<ion-label position="stacked">Hari Pengerjaan</ion-label>
+				<ion-datetime
+					mode="ios"
+					formControlName="execution_day"
+					display-format="DDDD, DD MMMM YYYY"
+					picker-format="DDDD, DD MMMM YYYY"
+					placeholder="Hari apa pengerjaan dimulai?"
+				></ion-datetime>
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="time" color="medium" slot="start"></ion-icon>
+				<ion-label position="stacked">Waktu Pengerjaan</ion-label>
+				<ion-datetime
+					mode="ios"
+					formControlName="execution_time"
+					display-format="H:mm"
+					picker-format="H:mm"
+					placeholder="Jam berapa?"
+				></ion-datetime>
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="create" color="medium" slot="start"></ion-icon>
+				<ion-label position="stacked">Uraian Pekerjaan</ion-label>
+				<ion-textarea
+					formControlName="note"
+					rows="3"
+					placeholder="Uraikan tentang pekerjaan yang akan dikerjakan"
+				>
+				</ion-textarea>
+			</ion-item>
+		</ion-list>
+	</form>
+</ion-content>
+
+<ion-footer class="footer-cta" mode="ios">
+	<ion-toolbar class="ion-no-padding">
+		<ion-button expand="full" color="secondary" (click)="order()" no-margin>
+			Pesan Sekarang
+		</ion-button>
+	</ion-toolbar>
+</ion-footer>

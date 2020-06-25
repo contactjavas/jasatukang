@@ -1,0 +1,148 @@
+// --------------------
+// ion-content
+// --------------------
+ion-content {
+	--ion-background-color: var(--app-color-light-grey);
+}
+
+// --------------------
+// Home slide
+// --------------------
+.home-slide {
+	--bullet-background: var(--ion-color-light);
+	--bullet-background-active: var(--ion-color-secondary);
+
+	height: 180px;
+
+	.slide-item {
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+	}
+
+	@media screen and (min-width: 768px) {
+		height: 300px;
+	}
+}
+
+// --------------------
+// Mitra
+// --------------------
+.mitra {
+	padding-bottom: 5px;
+
+	ion-grid {
+		padding: 16px 12px 10px;
+		background-color: #ffe9b1;
+		background-color: #fde097;
+		border-radius: 4px;
+		box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 5px;
+		padding-left: 5px;
+		padding-right: 4px;
+		color: var(--ion-color-primary);
+		font-size: 16px;
+		letter-spacing: 1px;
+		line-height: 1;
+	}
+
+	ion-col {
+		padding-bottom: 2px;
+	}
+}
+
+// --------------------
+// Product list
+// --------------------
+.product-list-wrapper {
+	padding-top: 12px;
+
+	.product-list:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.product-list {
+	--ion-padding: 10px;
+	margin-bottom: 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);
+
+	&.is-shrinked {
+		ion-list-header ion-icon {
+			transform: rotateX(180deg);
+		}
+
+		ion-grid {
+			max-height: 0;
+			transition: 250ms all ease-out;
+		}
+	}
+
+	ion-list-header {
+		position: relative;
+		letter-spacing: 1px;
+		font-weight: 500;
+
+		&::after,
+		&::before {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			content: "";
+			height: 1px;
+		}
+
+		&::before {
+			width: 100%;
+			background-color: var(--ion-color-light);
+		}
+
+		&::after {
+			width: 25%;
+			background-color: var(--ion-color-secondary);
+		}
+
+		ion-icon {
+			padding: 10px;
+		}
+	}
+
+	ion-grid {
+		overflow: hidden;
+		max-height: 700px;
+		transition: 250ms all ease-in;
+
+		ion-row {
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			border-bottom: 1px solid var(--ion-color-light);
+		}
+	}
+
+	ion-item {
+		--padding-start: 16px;
+		--padding-end: 5px;
+		--min-height: 35px;
+		--background: #fff;
+		font-size: 14px;
+
+		ion-thumbnail {
+			width: 24px;
+			height: 20px;
+
+			img {
+				max-width: none;
+				width: auto;
+				height: 20px;
+			}
+		}
+	}
+}

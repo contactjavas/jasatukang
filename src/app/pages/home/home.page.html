@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary" class="main-toolbar">
+		<ion-buttons slot="start">
+			<ion-button slot="icon-only">
+				<img alt="" src="assets/images/icon-tukang.png" class="topbar-logo" />
+			</ion-button>
+		</ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<ion-slides class="home-slide" pager="true">
+		<ion-slide>
+			<div
+				class="slide-item"
+				style="background-image: url(assets/images/slide-2.jpg);"
+			></div>
+		</ion-slide>
+		<ion-slide>
+			<div
+				class="slide-item"
+				style="background-image: url(assets/images/slide-1.jpg);"
+			></div>
+		</ion-slide>
+	</ion-slides>
+
+	<div class="ion-padding mitra">
+		<ion-grid>
+			<h2>Mitra</h2>
+			<ion-row>
+				<ion-col size="4" *ngFor="let partner of partners">
+					<img
+						alt="{{ partner.name }}"
+						src="{{ partner.logo_url }}"
+						(click)="openInApp(partner.website)"
+					/>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+
+	<div class="ion-padding product-list-wrapper">
+		<ion-list
+			lines="full"
+			class="ion-padding product-list"
+			*ngFor="let category of homeCategories"
+		>
+			<ion-list-header (click)="toggleShrink($event)">
+				<ion-label> {{ category.name }} </ion-label>
+				<ion-icon name="caret-up"></ion-icon>
+			</ion-list-header>
+			<ion-grid class="ion-no-padding">
+				<ion-row *ngFor="let cols of category.rows">
+					<ion-col size="6" *ngFor="let product of cols ion-no-padding">
+						<ion-item
+							lines="none"
+							detail="false"
+							routerLink="/product/{{ product.id }}"
+							routerDirection="forward"
+						>
+							<ion-thumbnail slot="start">
+								<img alt="AC" src="{{ product.icon_url }}" />
+							</ion-thumbnail>
+							<ion-label text-wrap>{{ product.name }}</ion-label>
+						</ion-item>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-list>
+	</div>
+</ion-content>

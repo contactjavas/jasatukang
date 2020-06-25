@@ -1,0 +1,83 @@
+// --------------------
+// Topbar
+// --------------------
+.topbar-logo {
+  max-width: none;
+  width: auto;
+  max-height: 100%;
+}
+
+// --------------------
+// Segment
+// --------------------
+ion-segment {
+  position: relative;
+  background-color: #fff;
+  box-shadow: rgba(72, 76, 89, 0.2) -2px 1px 7px 0px;
+  // should be on top of ".ion-segment-content"
+  z-index: 1;
+
+  ion-segment-button {
+    max-width: none;
+  }
+}
+
+.ios .segment-wrapper {
+  padding: 16px;
+
+  ion-segment-button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+// --------------------
+// CTA
+// --------------------
+.footer-cta {
+  ion-toolbar {
+    --min-height: none;
+  }
+
+  ion-button {
+    height: 50px;
+  }
+}
+
+// --------------------
+// Content
+// --------------------
+.content {
+  line-height: 2;
+  font-size: 14px;
+
+  h4,
+  .section-title {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  ul {
+    margin-bottom: 25px;
+    padding-left: 0;
+    list-style: none;
+
+    &.has-small-gap {
+      margin-bottom: 20px;
+    }
+
+    li {
+      position: relative;
+      padding-left: 20px;
+
+      &::before {
+        content: url("assets/images/icons/ionicons_svg_ios-checkmark-circle.svg");
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+}

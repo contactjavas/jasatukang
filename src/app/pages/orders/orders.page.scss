@@ -1,0 +1,60 @@
+// --------------------
+// ion-content
+// --------------------
+ion-content {
+	--ion-background-color: var(--app-color-light-grey);
+}
+
+ion-thumbnail {
+	width: 32px;
+	height: auto;
+
+	img {
+		height: auto;
+	}
+}
+
+// --------------------
+// Item
+// --------------------
+ion-item {
+	--border-width: 0; // md
+	--inner-border-width: 0; // ios
+
+	ion-label h3 {
+		margin-bottom: 10px;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 1.4;
+	}
+
+	ion-label {
+		padding: 20px;
+		background-color: #fff;
+		border-radius: 4px;
+		box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);
+	}
+
+	.label {
+		margin-top: 3px;
+		padding-top: 3px;
+		color: var(--ion-color-medium);
+
+		&.has-border {
+			border-top: 1px solid var(--app-color-light-grey);
+		}
+	}
+
+	.value {
+		color: #000;
+	}
+
+	ion-datetime {
+		--padding-start: 0;
+		--padding-top: 0;
+		--padding-bottom: 0;
+		font-size: 13px;
+		line-height: 20px;
+		color: #666;
+	}
+}

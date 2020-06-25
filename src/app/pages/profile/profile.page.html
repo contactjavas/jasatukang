@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary" class="main-toolbar">
+		<ion-buttons slot="start">
+			<ion-button slot="icon-only">
+				<img alt="" src="assets/images/icon-tukang.png" class="topbar-logo" />
+			</ion-button>
+		</ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<ion-list lines="inset">
+		<ion-list-header> <label>Data Diri</label> </ion-list-header>
+		<ion-item (click)="presentEditNameForm()">
+			<ion-label>
+				<ion-text>
+					<h3>Nama lengkap</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ user.name }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item (click)="presentEditAddressForm()">
+			<ion-label text-wrap>
+				<ion-text>
+					<h3>Alamat</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ user.address }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item (click)="presentEditPhoneForm()">
+			<ion-label>
+				<ion-text>
+					<h3>Nomor HP</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ user.phone }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+
+	<ion-list lines="inset">
+		<ion-list-header>
+			<label>Akun</label>
+		</ion-list-header>
+		<ion-item (click)="presentEditEmailForm()">
+			<ion-label>
+				<ion-text>
+					<h3>Alamat email</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>{{ user.email }}</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+		<ion-item (click)="presentEditPasswordForm('')">
+			<ion-label>
+				<ion-text>
+					<h3>Password</h3>
+				</ion-text>
+				<ion-text color="medium">
+					<p>************</p>
+				</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+</ion-content>

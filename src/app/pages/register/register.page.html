@@ -1,0 +1,89 @@
+<ion-content class="auth-ui ion-padding">
+	<div class="bg-image"></div>
+	<div class="overlay has-gradient"></div>
+
+	<div class="flex-container">
+		<div class="form-container">
+			<img class="logo" alt="" src="assets/images/altmetric-logo.png" />
+
+			<form
+				[formGroup]="registerForm"
+				(submit)="register()"
+				class="ion-padding"
+			>
+				<ion-item>
+					<ion-icon name="mail" color="tertiary" slot="start"></ion-icon>
+					<ion-label position="stacked">Email</ion-label>
+					<ion-input
+						formControlName="email"
+						type="email"
+						placeholder="Masukkan alamat email"
+						autocomplete="off"
+					>
+					</ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-icon name="lock" color="tertiary" slot="start"></ion-icon>
+					<ion-label position="stacked">Password</ion-label>
+					<ion-input
+						formControlName="password"
+						type="password"
+						placeholder="Masukkan password"
+						autocomplete="off"
+					>
+					</ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-icon name="person" color="tertiary" slot="start"></ion-icon>
+					<ion-label position="stacked">Nama</ion-label>
+					<ion-input
+						formControlName="name"
+						type="text"
+						placeholder="Masukkan nama"
+						autocomplete="off"
+					></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-icon
+						name="phone-portrait"
+						color="tertiary"
+						slot="start"
+					></ion-icon>
+					<ion-label position="stacked">Nomor handphone</ion-label>
+					<ion-input
+						formControlName="phone"
+						type="tel"
+						placeholder="Masukkan nomor handphone"
+						autocomplete="off"
+					>
+					</ion-input>
+				</ion-item>
+
+				<ion-button
+					type="submit"
+					expand="block"
+					fill="solid"
+					color="secondary"
+					shape="round"
+					class="register-button"
+				>
+					Daftar Sekarang
+				</ion-button>
+			</form>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar color="dark">
+		<ion-title color="light">
+			Sudah punya akun?
+			<a color="secondary" routerLink="/login" routerDirection="back"
+				>Masuk ke sini</a
+			>
+		</ion-title>
+	</ion-toolbar>
+</ion-footer>

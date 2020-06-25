@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Jasa Tukang</string>
+    <string name="title_activity_main">Jasa Tukang</string>
+    <string name="package_name">id.jasatukang.app</string>
+    <string name="custom_url_scheme">id.jasatukang.app</string>
+
+    <string name="server_client_id">439223145172-h64i5koijsldcu3a798k4u69iu0duhs5.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">365965110666199</string>
+    <string name="fb_login_protocol_scheme">fb365965110666199</string>
+</resources>
