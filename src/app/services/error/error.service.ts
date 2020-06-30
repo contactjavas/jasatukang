@@ -3,6 +3,7 @@ import {
   HttpClient,
   HttpErrorResponse
 } from "@angular/common/http";
+import { AlertController } from "@ionic/angular";
 
 import { throwError } from "rxjs";
 
@@ -10,7 +11,10 @@ import { throwError } from "rxjs";
   providedIn: 'root'
 })
 export class ErrorService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private alertController: AlertController
+  ) {}
 
   public handleError(httpError: HttpErrorResponse) {
     if (httpError.error instanceof ErrorEvent) {
@@ -42,5 +46,24 @@ export class ErrorService {
 
     // return an observable with a user-facing error message
     return throwError(appError);
+  }
+
+  async showMessage(error: any) {
+    let errorMsg = '';
+
+    if (error.message) {
+      errorMsg = error.message.statusText ? error.message.statusText : error.message;
+    } else {
+      errorMsg = error.error ? error.error : error;
+    }
+
+    const alert = await this.alertController.create({
+      header: "Gagal",
+      subHeader: error.label ? "Kesalahan di input " + error.label : "",
+      message: errorMsg,
+      buttons: ["OK"]
+    });
+
+    await alert.present();
   }
 }

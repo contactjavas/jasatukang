@@ -106,6 +106,26 @@ export class UserService {
       .pipe(catchError(this.errorService.handleError));
   }
 
+  forgetPassword(data: any): Observable<Response> {
+    return this.http
+      .post<Response>(
+        this.appService.apiUrl + "/forget-password",
+        data,
+        this.appService.httpOptions
+      )
+      .pipe(catchError(this.errorService.handleError));
+  }
+
+  resetPassword(data: any): Observable<Response> {
+    return this.http
+      .post<Response>(
+        this.appService.apiUrl + "/reset-password",
+        data,
+        this.appService.httpOptions
+      )
+      .pipe(catchError(this.errorService.handleError));
+  }
+
   private extractData(res: Response) {
     const body = res;
     return body || {};

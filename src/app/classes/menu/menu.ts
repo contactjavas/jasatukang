@@ -44,6 +44,12 @@ export class Menu {
       direction: "forward"
     },
     {
+      text: "Forget Password",
+      url: "/forget",
+      icon: "help-circle-outline",
+      direction: "forward"
+    },
+    {
       text: "Register",
       url: "/register",
       icon: "person",

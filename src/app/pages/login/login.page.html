@@ -7,7 +7,7 @@
 			<img
 				class="logo"
 				alt="Jasa Tukang"
-				src="assets/images/altmetric-logo.png"
+				src="assets/images/icon-jasatukang.png"
 			/>
 
 			<form [formGroup]="loginForm" (submit)="login()" class="ion-padding">
@@ -41,10 +41,17 @@
 					fill="solid"
 					color="secondary"
 					shape="round"
-					class="login-button"
+					class="login-button submit-button"
 				>
 					Masuk
 				</ion-button>
+
+				<p class="forget-password-text is-flex has-items-centered ion-text-center ion-align-items-center">
+					Lupa password?
+					<a class="forget-password-button" fill="solid" color="secondary" size="small" shape="round"  routerLink="/forget" routerDirection="forward">
+						Klik di sini
+					</a>
+				</p>
 			</form>
 
 			<div class="login-with" text-center>

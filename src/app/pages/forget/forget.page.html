@@ -1,0 +1,41 @@
+<ion-content class="auth-ui ion-padding">
+  <div class="bg-image"></div>
+  <div class="overlay has-gradient"></div>
+
+  <div class="flex-container">
+    <div>
+      <img class="logo" alt="Jasa Tukang" src="assets/images/icon-jasatukang.png" />
+
+      <form [formGroup]="forgetForm" (submit)="forgetPassword()" class="ion-padding">
+        <ion-item>
+          <ion-icon name="person" color="tertiary" slot="start"></ion-icon>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Masukkan alamat email" autocomplete="off">
+          </ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="block" fill="solid" color="secondary" shape="round" class="submit-button">
+          Lupa Password
+        </ion-button>
+      </form>
+
+      <div class="login-with" text-center>
+        <ion-text color="light">
+          <p>Ingat password?</p>
+        </ion-text>
+        <ion-button fill="solid" expand="block" color="danger" shape="round"  routerLink="/login" routerDirection="backward" text-capitalize>
+          Login
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-title color="light">
+      Belum punya akun?
+      <a color="secondary" routerLink="/register" routerDirection="forward">Daftar Sekarang</a>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

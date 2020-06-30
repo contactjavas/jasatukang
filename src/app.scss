@@ -1,4 +1,16 @@
 // --------------------
+// General
+// --------------------
+.is-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.has-items-centered {
+  justify-content: center;
+}
+
+// --------------------
 // Topbar
 // --------------------
 .topbar-logo {
