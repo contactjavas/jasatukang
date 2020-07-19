@@ -18,9 +18,9 @@ export class Menu {
       direction: "root"
     },
     {
-      text: "Inbox",
+      text: "Notifikasi",
       url: "/app/tabs/messages",
-      icon: "mail",
+      icon: "notifications",
       direction: "root"
     },
     {

@@ -11,8 +11,9 @@
     </ion-tab-button>
 
     <ion-tab-button tab="messages">
-      <ion-icon name="mail"></ion-icon>
-      <ion-label>Inbox</ion-label>
+      <ion-icon name="notifications"></ion-icon>
+      <ion-label>Notifikasi</ion-label>
+      <ion-badge color="secondary" *ngIf="totalUnread">{{totalUnread}}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="profile">
