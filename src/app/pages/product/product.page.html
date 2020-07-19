@@ -15,6 +15,7 @@
 
 	<div class="segment-wrapper">
 		<ion-segment
+			mode="md"
 			[(ngModel)]="currentSegment"
 			class="service-model"
 			value="{{ currentSegment }}"
@@ -39,7 +40,7 @@
 	</div>
 </ion-content>
 
-<ion-footer class="footer-cta" [ngSwitch]="currentSegment" mode="ios">
+<ion-footer class="footer-cta" [ngSwitch]="currentSegment">
 	<ion-toolbar *ngFor="let service of product.services" class="ion-no-padding">
 		<ion-button
 			expand="full"
@@ -47,7 +48,7 @@
 			*ngSwitchCase="service.id"
 			routerLink="/order/{{ product.id }}/1"
 			routerDirection="forward"
-			no-margin
+			class="ion-no-margin"
 		>
 			{{ service.action }}
 		</ion-button>

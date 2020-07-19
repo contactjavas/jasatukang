@@ -19,7 +19,7 @@
 </ion-header>
 
 <ion-content>
-	<ion-list>
+	<ion-list lines="full" class="search-result">
 		<ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">
 			{{ place.description }}
 		</ion-item>

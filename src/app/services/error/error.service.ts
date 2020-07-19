@@ -7,13 +7,16 @@ import { AlertController } from "@ionic/angular";
 
 import { throwError } from "rxjs";
 
+import { AuthService } from "../../services/auth/auth.service";
+
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorService {
   constructor(
     private http: HttpClient,
-    private alertController: AlertController
+    private alertController: AlertController,
+    public authService: AuthService,
   ) {}
 
   public handleError(httpError: HttpErrorResponse) {
@@ -61,7 +64,16 @@ export class ErrorService {
       header: "Gagal",
       subHeader: error.label ? "Kesalahan di input " + error.label : "",
       message: errorMsg,
-      buttons: ["OK"]
+      buttons: [
+        {
+          text: "OK",
+          handler: () => {
+            if (error.status === 401) {
+              this.authService.logout();
+            }
+          }
+        }
+      ]
     });
 
     await alert.present();

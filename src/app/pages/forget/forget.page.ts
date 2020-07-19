@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { AlertController, LoadingController } from "@ionic/angular";
-import { Storage } from "@ionic/storage";
 
 import { AuthService } from "../../services/auth/auth.service";
 import { UserService } from "../../services/user/user.service";
@@ -22,7 +21,6 @@ export class ForgetPage implements OnInit {
     private formBuilder: FormBuilder,
     public alertController: AlertController,
     public loadingController: LoadingController,
-    private storage: Storage,
     public authService: AuthService,
     public userService: UserService,
     public errorService: ErrorService,
@@ -42,7 +40,7 @@ export class ForgetPage implements OnInit {
 
     await loading.present();
 
-    await this.userService.forgetPassword(this.forgetForm.value).subscribe(
+    this.userService.forgetPassword(this.forgetForm.value).subscribe(
       (res: any) => {
         console.log(res);
         loading.dismiss();

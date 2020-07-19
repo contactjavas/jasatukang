@@ -1,12 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
 
-import { Subscription, from } from 'rxjs';
-import { Plugins, StatusBarStyle } from '@capacitor/core';
-
 import { Platform } from '@ionic/angular';
 import { Storage } from "@ionic/storage";
 
+import { Subscription, from } from 'rxjs';
+import { Plugins, StatusBarStyle } from '@capacitor/core';
 
 import { Menu } from './classes/menu/menu';
 import { AuthService } from './services/auth/auth.service';

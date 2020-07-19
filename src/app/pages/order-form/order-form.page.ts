@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { Storage } from "@ionic/storage";
 
-import { OrderService } from "../../services/order/order.service";
-
 import {
   ToastController,
   AlertController,
@@ -18,6 +16,8 @@ import { parseISO } from 'date-fns'
 
 import { LocationPickerComponent } from "../../modals/location-picker/location-picker.component";
 import { AuthService } from "../../services/auth/auth.service";
+import { OrderService } from "../../services/order/order.service";
+import { ErrorService } from "../../services/error/error.service";
 
 @Component({
   selector: "app-order",
@@ -40,7 +40,8 @@ export class OrderFormPage implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private storage: Storage,
-    private authService: AuthService
+    private authService: AuthService,
+    public errorService: ErrorService,
   ) {
     this.orderForm = this.formBuilder.group({
       product_id: [""],
@@ -128,12 +129,12 @@ export class OrderFormPage implements OnInit {
     this.formData.execution_time = format(parseISO(timeValue), 'HH:mm:ss');
 
     const loading = await this.loadingController.create({
-      message: "Checking..."
+      message: "Processing..."
     });
 
     await loading.present();
 
-    await this.orderService.order(this.formData, this.token).subscribe(
+    this.orderService.order(this.formData, this.token).subscribe(
       res => {
         this.storage.set("orders", res.data);
         this.storage.set("token", res.token);
@@ -142,13 +143,7 @@ export class OrderFormPage implements OnInit {
       },
       err => {
         loading.dismiss();
-
-        if (err.status === 401) {
-          this.authService.logout();
-        } else {
-          this.showErrorMessage(err);
-        }
-
+        this.errorService.showMessage(err);
       }
     );
   }

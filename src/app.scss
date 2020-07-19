@@ -23,23 +23,12 @@
 // Segment
 // --------------------
 ion-segment {
-  position: relative;
-  background-color: #fff;
   box-shadow: rgba(72, 76, 89, 0.2) -2px 1px 7px 0px;
   // should be on top of ".ion-segment-content"
   z-index: 1;
 
   ion-segment-button {
     max-width: none;
-  }
-}
-
-.ios .segment-wrapper {
-  padding: 16px;
-
-  ion-segment-button {
-    padding-top: 5px;
-    padding-bottom: 5px;
   }
 }
 

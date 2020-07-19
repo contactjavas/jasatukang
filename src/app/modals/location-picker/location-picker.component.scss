@@ -1,3 +1,19 @@
+.ios ion-searchbar {
+	padding: 10px 12px;
+}
+
+.search-result {
+	ion-item {
+		--inner-padding-top: 10px;
+		--inner-padding-bottom: 10px;
+	}
+
+	&.list-md {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+}
+
 app-location-picker {
 	#please-connect {
 		position: absolute;
@@ -19,16 +35,6 @@ app-location-picker {
 
 	.scroll-content {
 		overflow: hidden;
-	}
-
-	.list-md {
-		padding-top: 0;
-		padding-bottom: 0;
-	}
-
-	.item-inner {
-		--inner-padding-top: 10px;
-		--inner-padding-bottom: 10px;
 	}
 }
 
