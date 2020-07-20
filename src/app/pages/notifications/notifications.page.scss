@@ -1,0 +1,15 @@
+.notification-list {
+  ion-label {
+    padding: 10px 15px;
+    border-radius: 4px;
+		box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .message {
+    font-weight: 400;
+
+    &.is-unseen {
+      font-weight: 700;
+    }
+  }
+}

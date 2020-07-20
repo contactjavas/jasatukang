@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 
 import { AuthService } from "../../services/auth/auth.service";
 import { OrderService } from "../../services/order/order.service";
+import { ErrorService } from "../../services/error/error.service";
 
 @Component({
   selector: "app-orders",
@@ -22,7 +23,8 @@ export class OrdersPage implements OnInit {
     private router: Router,
     private storage: Storage,
     private authService: AuthService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public errorService: ErrorService,
   ) {
     console.log('Orders "constructor" run');
   }
@@ -61,18 +63,11 @@ export class OrdersPage implements OnInit {
 
           this.groupsOrders();
 
-          if (refresher) {
-            refresher.target.complete();
-          }
+          if (refresher) refresher.target.complete();
         },
         err => {
-          if (refresher) {
-            refresher.target.complete();
-          }
-
-          if (err.status === 401) {
-            this.authService.logout();
-          }
+          if (refresher) refresher.target.complete();
+          this.errorService.showMessage(err);
         }
       );
     });

@@ -8,6 +8,7 @@ const { Browser } = Plugins;
 import { AuthService } from "../../services/auth/auth.service";
 import { ProductService } from "../../services/product/product.service";
 import { PartnerService } from "../../services/partner/partner.service";
+import { ErrorService } from "../../services/error/error.service";
 
 @Component({
   selector: "app-home",
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
     private storage: Storage,
     private authService: AuthService,
     private productService: ProductService,
-    private partnerService: PartnerService
+    private partnerService: PartnerService,
+    public errorService: ErrorService,
   ) {
     console.log('Home "constructor" run');
   }
@@ -62,18 +64,11 @@ export class HomePage implements OnInit {
             this.storage.set("categorized_products", res.data);
             this.prepareOutput(res.data);
 
-            if (refresher) {
-              refresher.target.complete();
-            }
+            if (refresher) refresher.target.complete();
           },
           err => {
-            if (refresher) {
-              refresher.target.complete();
-            }
-
-            if (err.status === 401) {
-              this.authService.logout();
-            }
+            if (refresher) refresher.target.complete();
+            this.errorService.showMessage(err);
           }
         );
       }
@@ -90,9 +85,7 @@ export class HomePage implements OnInit {
         this.partners = res.data;
       },
       err => {
-        if (err.status === 401) {
-          this.authService.logout();
-        }
+        this.errorService.showMessage(err);
       }
     );
   }

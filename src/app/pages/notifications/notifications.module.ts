@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MessagesPageRoutingModule } from './messages-routing.module';
+import { NotificationsPageRoutingModule } from './notifications-routing.module';
 
-import { MessagesPage } from './messages.page';
+import { NotificationsPage } from './notifications.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MessagesPageRoutingModule
+    NotificationsPageRoutingModule
   ],
-  declarations: [MessagesPage]
+  declarations: [NotificationsPage]
 })
-export class MessagesPageModule {}
+export class NotificationsPageModule {}

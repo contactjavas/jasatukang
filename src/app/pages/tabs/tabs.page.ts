@@ -2,11 +2,13 @@ import { Component, OnInit } from "@angular/core";
 
 import { Storage } from "@ionic/storage";
 
-import { Subscription } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 
 import { AuthService } from "../../services/auth/auth.service";
 import { ProductService } from "../../services/product/product.service";
 import { NotificationService } from "../../services/notification/notification.service";
+import { ErrorService } from "../../services/error/error.service";
+import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: "app-tabs",
@@ -15,13 +17,16 @@ import { NotificationService } from "../../services/notification/notification.se
 })
 export class TabsPage implements OnInit {
   unreadState: Subscription;
+  notificationState: Subscription;
   totalUnread: Number = 0;
+  fetchingInterval: number = 1 * 60 * 1000; // 1 minutes.
 
   constructor(
     private storage: Storage,
     private authService: AuthService,
     private productService: ProductService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public errorService: ErrorService,
   ) {
     console.log('TabsPage "constructor" run');
   }
@@ -44,46 +49,58 @@ export class TabsPage implements OnInit {
         this.totalUnread = 0;
       }
     });
+
+    this.storage.get("token").then(token => {
+      if (!token) return;
+
+      let notificationPipe = interval(this.fetchingInterval).pipe(
+        flatMap(() => this.notificationService.fetchLimit(token, 0, 20))
+      );
+  
+      this.notificationState = notificationPipe.subscribe(res => {
+        console.log("Notification list has been fetched via 2 minutes observable in tabs.page.ts");
+
+        this.notificationService.setUnreadState(
+          this.notificationService.countUnread(res.data)
+        );
+        this.storage.set("notifications", res.data);
+      });
+    });
+
   }
 
   fetchData() {
     this.storage.get("token").then(token => {
-      if (token) {
-        console.log("Fetching data from tabs.page.ts via ionViewWillEnter");
+      if (!token) return;
+      console.log("Fetching product list & notification list in tabs.page.ts");
 
-        this.productService.fetchProducts(token).subscribe(
-          res => {
-            console.log("Products fetched from tabs.page.ts via ionViewWillEnter");
-            this.storage.set("categorized_products", res.data);
-          },
-          err => {
-            console.log(err);
+      this.productService.fetchProducts(token).subscribe(
+        res => {
+          console.log("Product list has been fetched via 'fetchData()' in tabs.page.ts");
+          this.storage.set("categorized_products", res.data);
+        },
+        err => {
+          this.errorService.showMessage(err);
+        }
+      );
 
-            if (err.status === 401) {
-              this.authService.logout();
-            }
-          }
-        );
-
-        this.notificationService.fetchLimit(token, 0, 20).subscribe(
-          res => {
-            console.log("Notifications fetched from tabs.page.ts via ionViewWillEnter with total: " + res.data.length);
-            this.notificationService.setUnreadState(res.data.length);
-            this.storage.set("notifications", res.data);
-          },
-          err => {
-            console.log(err);
-
-            if (err.status === 401) {
-              this.authService.logout();
-            }
-          }
-        );
-      }
+      this.notificationService.fetchLimit(token, 0, 20).subscribe(
+        res => {
+          console.log("Notification list has been fetched via 'fetchData()' in tabs.page.ts");
+          this.notificationService.setUnreadState(
+            this.notificationService.countUnread(res.data)
+          );
+          this.storage.set("notifications", res.data);
+        },
+        err => {
+          this.errorService.showMessage(err);
+        }
+      );
     });
   }
 
   ngOnDestroy() {
     this.unreadState.unsubscribe();
+    this.notificationState.unsubscribe();
   }
 }

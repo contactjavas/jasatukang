@@ -7,6 +7,7 @@ import { User } from "../../interfaces/user";
 
 import { AuthService } from "../../services/auth/auth.service";
 import { UserService } from "../../services/user/user.service";
+import { ErrorService } from "../../services/error/error.service";
 
 import { EditAddressComponent } from "../../modals/edit-address/edit-address.component";
 
@@ -34,7 +35,8 @@ export class ProfilePage implements OnInit {
     private zone: NgZone,
     private storage: Storage,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    public errorService: ErrorService,
   ) {
     Promise.all([this.storage.get("user"), this.storage.get("via")]).then(values => {
       this.user = values[0];
@@ -51,9 +53,7 @@ export class ProfilePage implements OnInit {
             this.storage.set("token", res.token);
           },
           err => {
-            if (err.status === 401) {
-              this.authService.logout();
-            }
+            this.errorService.showMessage(err);
           }
         );
       }
@@ -89,20 +89,11 @@ export class ProfilePage implements OnInit {
           res => {
             this.storage.set("user", res.data);
 
-            if (refresher) {
-              refresher.target.complete();
-            }
+            if (refresher) refresher.target.complete();
           },
           err => {
-            console.log(err);
-
-            if (refresher) {
-              refresher.target.complete();
-            }
-
-            if (err.status === 401) {
-              this.authService.logout();
-            }
+            if (refresher) refresher.target.complete();
+            this.errorService.showMessage(err);
           }
         );
       }

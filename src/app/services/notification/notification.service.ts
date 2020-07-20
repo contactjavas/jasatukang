@@ -5,6 +5,8 @@ import { Observable, Subject } from "rxjs";
 import { catchError } from "rxjs/operators";
 
 import { Response } from "../../interfaces/http";
+import { Notification } from "../../interfaces/notification";
+
 import { ErrorService } from "../../services/error/error.service";
 import { AppService } from "../../services/app/app.service";
 
@@ -20,7 +22,7 @@ export class NotificationService {
     private appService: AppService
   ) { }
 
-  order(data: any, token: String): Observable<Response> {
+  markAsSeen(token: string, notifId: number): Observable<Response> {
     this.appService.httpOptions.headers = this.appService.httpOptions.headers.set(
       "Authorization",
       "Bearer " + token
@@ -28,8 +30,8 @@ export class NotificationService {
 
     return this.http
       .post<Response>(
-        this.appService.apiUrl + "/order",
-        data,
+        this.appService.apiUrl + "/my-notifications/mark-as-seen/",
+        { id: notifId },
         this.appService.httpOptions
       )
       .pipe(catchError(this.errorService.handleError));
@@ -47,6 +49,16 @@ export class NotificationService {
         this.appService.httpOptions
       )
       .pipe(catchError(this.errorService.handleError));
+  }
+
+  countUnread(notifications: Array<Notification>) {
+    let total = 0;
+
+    notifications.forEach(notification => {
+      if (!notification.is_seen) total++;
+    });
+
+    return total;
   }
 
   getUnreadState() {

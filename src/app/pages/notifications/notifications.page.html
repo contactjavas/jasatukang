@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar color="primary" class="main-toolbar">
+		<ion-buttons slot="start">
+			<ion-button slot="icon-only">
+				<img alt="Logo Jasatukang" src="assets/images/logo-jasatukang.png" class="topbar-logo" />
+			</ion-button>
+		</ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-refresher slot="fixed" (ionRefresh)="refreshData($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<ion-list class="notification-list" lines="none">
+		<ion-list-header>
+			Notifikasi
+		</ion-list-header>
+		<ion-item *ngFor="let notification of notifications" routerLink="{{ notification.type.includes('order') ? '/orders/' + notification.data : null }}" routerDirection="forward" (click)="onItemClick($event, notification.id)" text-wrap>
+			<ion-label text-wrap>
+				<p class="time">{{toReadableDate(notification.created_at)}}</p>
+				<ion-text class="message {{ notification.is_seen ? 'is-seen' : 'is-unseen' }}" color="{{ notification.is_seen ? 'medium' : 'dark' }}">
+					{{notification.message}}
+				</ion-text>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+</ion-content>

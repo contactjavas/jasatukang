@@ -19,7 +19,7 @@ export class Menu {
     },
     {
       text: "Notifikasi",
-      url: "/app/tabs/messages",
+      url: "/app/tabs/notifications",
       icon: "notifications",
       direction: "root"
     },

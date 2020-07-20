@@ -7,6 +7,7 @@ import { Storage } from "@ionic/storage";
 import { Product, Service } from "../../interfaces/product";
 import { ProductService } from "../../services/product/product.service";
 import { AuthService } from "../../services/auth/auth.service";
+import { ErrorService } from "../../services/error/error.service";
 
 @Component({
   selector: "app-product",
@@ -30,7 +31,8 @@ export class ProductPage implements OnInit {
     private route: ActivatedRoute,
     private storage: Storage,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    public errorService: ErrorService,
   ) { }
 
   ngOnInit() {
@@ -69,10 +71,7 @@ export class ProductPage implements OnInit {
         },
         err => {
           loading.dismiss();
-
-          if (err.status === 401) {
-            this.authService.logout();
-          }
+          this.errorService.showMessage(err);
         }
       );
     });

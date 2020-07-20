@@ -27,11 +27,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: "messages",
+        path: "notifications",
         children: [
           {
             path: "",
-            loadChildren: () => import('../messages/messages.module').then(m => m.MessagesPageModule)
+            loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule)
           }
         ]
       },
